@@ -26,6 +26,7 @@ public class WeatherParser {
         String OWM_Max="max";
         String OWM_Min="min";
         String OWM_description="main";
+        String OWM_humidity="humidity";
 
         //creat a josn object
 
@@ -54,14 +55,14 @@ public class WeatherParser {
 
             JSONObject o = dayForcast.getJSONArray(OWM_Weather).getJSONObject(0); // this is an array but we have only one object
             discription = o.getString(OWM_description);
-
             JSONObject tempObj = dayForcast.getJSONObject(OWM_Temp);
             double max = tempObj.getDouble(OWM_Max);
             double min = tempObj.getDouble(OWM_Min);
 
+            int humidity=dayForcast.getInt(OWM_humidity);
             minmax = Math.round(min)+" - " + Math.round(max); // to format the tempreture to the
 
-            results[i]=day+" | "+ discription+ " | "+ minmax;
+            results[i]=day+" | "+ discription+ " | "+ minmax + " | " + humidity;
         }
         for(int i=0 ; i<numDays ; i++)
         {
